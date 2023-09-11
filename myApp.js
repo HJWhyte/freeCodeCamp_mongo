@@ -5,7 +5,16 @@ let mongoose = require('mongoose');     // Create Mongoose requirement
 const mySecret = process.env['MONGO_URI'] // Access URI
 mongoose.connect(mySecret, { useNewUrlParser: true, useUnifiedTopology : true});  // Connect to database
 
-let Person;
+// #2
+const Schema = mongoose.Schema;
+
+const personSchema = new Schema({
+  name: { type: String, required: true },
+  age: Number,
+  favoriteFoods: [String]
+});
+
+let Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
